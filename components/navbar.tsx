@@ -22,6 +22,7 @@ import {
 } from "./ui/tooltip";
 import { Button } from "./ui/button";
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
+import Link from "next/link";
 
 const flags = { en: "/flags/flag-en.svg", el: "/flags/flag-el.svg" };
 
@@ -32,12 +33,14 @@ export default function Navbar() {
     const { theme, setTheme } = useTheme();
     const settings = useSettings();
     const { toast } = useToast();
-    const [currentLanguage, setCurrentLanguage] = useState<Language>("en");
+    const [currentLanguage, setCurrentLanguage] = useState<Language>(
+        settings.language
+    );
 
     const navigation = [
-        { name: t(tokens.nav.aboutUs), href: "#about-us" },
-        { name: t(tokens.nav.programs), href: "#programs" },
-        { name: t(tokens.nav.contact), href: "#" },
+        { name: t(tokens.nav.aboutUs), href: "/#about-us" },
+        { name: t(tokens.nav.programs), href: "/#programs" },
+        { name: t(tokens.nav.contact), href: "/#about-us" },
     ];
 
     const handleToggleTheme = () => {
@@ -79,13 +82,13 @@ export default function Navbar() {
     };
 
     return (
-        <header className="fixed inset-x-0 top-0 z-50 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-base-200/50">
+        <header className="fixed inset-x-0 top-0 z-50 bg-card/80 backdrop-blur supports-[backdrop-filter]:bg-base-200/50">
             <nav
                 className="flex items-center justify-between p-3 lg:px-8 h-16"
                 aria-label="Global"
             >
                 <div className="flex lg:flex-1">
-                    <a href="#" className="-m-1.5 p-1.5">
+                    <Link href="/" className="-m-1.5 p-1.5">
                         <span className="sr-only">Your Company</span>
                         <Image
                             src={"/logo-letters.webp"}
@@ -93,7 +96,7 @@ export default function Navbar() {
                             width={150}
                             height={100}
                         />
-                    </a>
+                    </Link>
                 </div>
                 <div className="flex lg:hidden">
                     <button
@@ -140,19 +143,17 @@ export default function Navbar() {
                         </Tooltip>
                     </TooltipProvider>
                     <DropdownMenu modal={false}>
-                        <DropdownMenuTrigger className="cursor-pointer">
-                            <TooltipProvider>
+                        <DropdownMenuTrigger className="cursor-pointer" asChild>
+                            <Button variant="ghost" size="icon">
                                 <Tooltip>
                                     <TooltipTrigger asChild>
-                                        <Button variant="ghost" size="icon">
-                                            <Image
-                                                src={flags[currentLanguage]}
-                                                alt="Language"
-                                                className="w-6 h-6"
-                                                width={24}
-                                                height={24}
-                                            />
-                                        </Button>
+                                        <Image
+                                            src={flags[currentLanguage]}
+                                            alt="Language"
+                                            className="w-6 h-6"
+                                            width={24}
+                                            height={24}
+                                        />
                                     </TooltipTrigger>
                                     <TooltipContent>
                                         <p className="text-sm font-semibold">
@@ -160,7 +161,7 @@ export default function Navbar() {
                                         </p>
                                     </TooltipContent>
                                 </Tooltip>
-                            </TooltipProvider>
+                            </Button>
                         </DropdownMenuTrigger>
 
                         <DropdownMenuContent className="w-42 mr-6">

@@ -51,7 +51,7 @@ export const HeroFigure: FC<HeroFigureProps> = ({
                 </div>
                 <Image
                     alt="Hero"
-                    className={`mx-auto rounded-xl object-cover w-full sm:w-2/3 lg:w-full ${reverseClass}`}
+                    className={`mx-auto rounded-xl object-cover w-full sm:w-2/3 lg:w-full ${reverseClass} shadow-lg`}
                     height="350"
                     src="/main-img.webp"
                     width="350"

@@ -6,7 +6,7 @@ import { HeroFigure } from "@/components/hero-figure";
 import { AboutUs } from "@/components/about-us";
 import { ProgramsCarousel } from "@/components/programs-carousel";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export default function Home() {
     const { theme, setTheme } = useTheme();
@@ -23,10 +23,17 @@ export default function Home() {
 
     return (
         <>
-            <Hero />
-            <main className="container mx-auto">
-                <AboutUs />
-                <ProgramsCarousel />
+            <style jsx global>{`
+                html {
+                    font-family: ${inter.style.fontFamily};
+                }
+            `}</style>
+            <main>
+                <Hero />
+                <div className="container mx-auto">
+                    <AboutUs />
+                    <ProgramsCarousel />
+                </div>
             </main>
         </>
     );

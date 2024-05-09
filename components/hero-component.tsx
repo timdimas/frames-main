@@ -1,4 +1,6 @@
 import { Button } from "@/components/ui/button";
+import { CaretDownIcon } from "@radix-ui/react-icons";
+import Link from "next/link";
 
 export default function Hero() {
     return (
@@ -22,9 +24,14 @@ export default function Hero() {
                             fugiat ut assumenda excepturi exercitationem quasi.
                             In deleniti eaque aut repudiandae et a id nisi.
                         </p>
-                        <Button className="rounded-full" variant="outline">
-                            Get Started
-                        </Button>
+                        <Link href="#about-us">
+                            <Button
+                                className="rounded-full animate-bounce"
+                                variant="outline"
+                            >
+                                <CaretDownIcon className="h-8 w-8" />
+                            </Button>
+                        </Link>
                     </div>
                 </div>
             </div>

@@ -5,6 +5,8 @@ import { SettingsProvider } from "@/contexts/settings-context";
 import "@/locales/i18n";
 import Navbar from "@/components/navbar";
 import { Toaster } from "@/components/ui/toaster";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import Footer from "@/components/footer";
 
 export default function App({ Component, pageProps }: AppProps) {
     return (
@@ -16,9 +18,12 @@ export default function App({ Component, pageProps }: AppProps) {
                 disableTransitionOnChange
                 value={{ light: "mytheme", dark: "dark" }}
             >
-                <Toaster />
-                <Navbar />
-                <Component {...pageProps} />
+                <TooltipProvider>
+                    <Toaster />
+                    <Navbar />
+                    <Component {...pageProps} />
+                    <Footer />
+                </TooltipProvider>
             </ThemeProvider>
         </SettingsProvider>
     );

@@ -12,4 +12,7 @@ export const el = {
     [tokens.common.themeChanged]: "Το θέμα άλλαξε επιτυχώς",
     [tokens.common.languageChanged]: "Η γλώσσα άλλαξε επιτυχώς",
     [tokens.common.close]: "Κλείσιμο",
+    [tokens.nav.connectWithUs]: "Συνδεθείτε μαζί μας",
+    [tokens.nav.ourLocation]: "Η τοποθεσία μας",
+    [tokens.common.addressLocation]: "Φράγκων 12, Θεσσαλονίκη 546 26",
 };

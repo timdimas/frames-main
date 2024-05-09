@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 const STORAGE_KEY = "app.settings";
 
 type Settings = {
-    language: string;
+    language: "en" | "el";
 };
 
 const restoreSettings = () => {
@@ -47,8 +47,8 @@ const storeSettings = (value: Settings) => {
     }
 };
 
-const initialSettings = {
-    language: "en",
+const initialSettings: { language: "el" | "en" } = {
+    language: "el",
 };
 
 const initialState = {
@@ -90,7 +90,7 @@ export const SettingsProvider = (props: { children: any }) => {
     const handleUpdate = useCallback((settings: Settings) => {
         setState((prevState) => {
             storeSettings({
-                language: prevState.language,
+                language: settings.language,
             });
 
             return {

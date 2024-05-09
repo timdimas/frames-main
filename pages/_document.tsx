@@ -1,10 +1,15 @@
+import { cn } from "@/lib/utils";
 import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
     return (
         <Html className="scroll-smooth" lang="en">
             <Head />
-            <body>
+            <body
+                className={cn(
+                    "min-h-screen bg-background font-sans antialiased"
+                )}
+            >
                 <Main />
                 <NextScript />
             </body>

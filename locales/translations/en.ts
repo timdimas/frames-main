@@ -12,4 +12,7 @@ export const en = {
     [tokens.common.themeChanged]: "Theme changed successfully",
     [tokens.common.languageChanged]: "Language changed successfully",
     [tokens.common.close]: "Close",
+    [tokens.nav.connectWithUs]: "Connect with us",
+    [tokens.nav.ourLocation]: "Our Location",
+    [tokens.common.addressLocation]: "Fragkon 12, Thessaloniki 546 26",
 };
