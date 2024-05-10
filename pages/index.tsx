@@ -5,6 +5,7 @@ import Navbar from "@/components/navbar";
 import { HeroFigure } from "@/components/hero-figure";
 import { AboutUs } from "@/components/about-us";
 import { ProgramsCarousel } from "@/components/programs-carousel";
+import { Seo } from "@/components/seo";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -23,6 +24,7 @@ export default function Home() {
 
     return (
         <>
+            <Seo title="Capital Compass" />
             <style jsx global>{`
                 html {
                     font-family: ${inter.style.fontFamily};
