@@ -12,6 +12,10 @@ export default function Document() {
             >
                 <Main />
                 <NextScript />
+                <script
+                    src="https://website-widgets.pages.dev/dist/sienna.min.js"
+                    defer
+                ></script>
             </body>
         </Html>
     );

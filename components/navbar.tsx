@@ -90,10 +90,10 @@ export default function Navbar() {
             >
                 <div className="flex lg:flex-1">
                     <Link href="/" className="-m-1.5 p-1.5">
-                        <span className="sr-only">Your Company</span>
+                        <span className="sr-only">Capital Compass</span>
                         <Image
                             src={"/logo-letters.webp"}
-                            alt="Logo"
+                            alt="Capital Compass Logo"
                             width={150}
                             height={100}
                         />

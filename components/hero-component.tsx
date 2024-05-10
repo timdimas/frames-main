@@ -24,10 +24,14 @@ export default function Hero() {
                             fugiat ut assumenda excepturi exercitationem quasi.
                             In deleniti eaque aut repudiandae et a id nisi.
                         </p>
-                        <Link href="#about-us">
+                        <Link
+                            aria-label="Scroll down to learn more"
+                            href="#about-us"
+                        >
                             <Button
                                 className="rounded-full animate-bounce"
                                 variant="outline"
+                                aria-label="Scroll down to learn more about us"
                             >
                                 <CaretDownIcon className="h-8 w-8" />
                             </Button>

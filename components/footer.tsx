@@ -29,6 +29,7 @@ export default function Footer() {
                             href="https://www.instagram.com/capitalcompass_consulting/"
                             target="_blank"
                             referrerPolicy="no-referrer"
+                            aria-label="Our Instagram Account"
                         >
                             <InstagramLogoIcon className="h-5 w-5" />
                         </Link>
@@ -37,6 +38,7 @@ export default function Footer() {
                             href="https://www.instagram.com/capitalcompass_consulting/"
                             target="_blank"
                             referrerPolicy="no-referrer"
+                            aria-label="Our Instagram Account"
                         >
                             <InstagramLogoIcon className="h-5 w-5" />
                         </Link>
@@ -85,6 +87,8 @@ export default function Footer() {
                     </h4>
                     <div className="aspect-w-16 aspect-h-9 rounded-md overflow-hidden">
                         <iframe
+                            name="Capital Compass Location"
+                            title="Capital Compass Location"
                             className="md:h-full w-full"
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12110.534140349313!2d22.93670338112944!3d40.63796309286925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a839a73a2fee51%3A0x16647f44f8a27766!2sFragkon%2012%2C%20Thessaloniki%20546%2026!5e0!3m2!1sen!2sgr!4v1695631433259!5m2!1sen!2sgr"
                             width="600"

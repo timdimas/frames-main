@@ -98,7 +98,7 @@ export function MobileNav({
                     <span className="sr-only">Capital Compass</span>
                     <Image
                         src={"/logo-letters.webp"}
-                        alt="Logo"
+                        alt="Capital Compass Logo"
                         width={150}
                         height={100}
                     />

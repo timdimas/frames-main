@@ -96,6 +96,7 @@ export function ProgramsCarousel() {
                     {Array.from(Array(count).keys()).map((i) => (
                         <Button
                             key={i}
+                            aria-label={`Go to slide ${i + 1}`}
                             className={`mx-1 h-1.5 w-10 rounded-full p-0  ${
                                 i === current - 1
                                     ? "hover:bg-primary bg-primary"
