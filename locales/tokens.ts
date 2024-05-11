@@ -17,4 +17,9 @@ export const tokens = {
         connectWithUs: "nav.connectWithUs",
         ourLocation: "nav.ourLocation",
     },
+    seo: {
+        mainTitle: "seo.mainTitle",
+        mainDescription: "seo.mainDescription",
+        mainKeywords: "seo.mainKeywords",
+    }
 };
