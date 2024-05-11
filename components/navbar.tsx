@@ -8,18 +8,8 @@ import { tokens } from "@/locales/tokens";
 import { useSettings } from "@/hooks/use-settings";
 import { useToast } from "./ui/use-toast";
 import { ToastAction } from "./ui/toast";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger,
-} from "./ui/tooltip";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
 import { Button } from "./ui/button";
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
@@ -34,9 +24,7 @@ export default function Navbar() {
     const { theme, setTheme } = useTheme();
     const settings = useSettings();
     const { toast } = useToast();
-    const [currentLanguage, setCurrentLanguage] = useState<Language>(
-        settings.language
-    );
+    const [currentLanguage, setCurrentLanguage] = useState<Language>(settings.language);
 
     const navigation = [
         { name: t(tokens.nav.aboutUs), href: "/#about-us" },
@@ -46,19 +34,11 @@ export default function Navbar() {
 
     const handleToggleTheme = () => {
         setTheme(theme === "light" ? "dark" : "light");
-        document.documentElement.classList.remove(
-            theme === "light" ? "light" : "dark"
-        );
-        document.documentElement.classList.add(
-            theme === "light" ? "dark" : "light"
-        );
+        document.documentElement.classList.remove(theme === "light" ? "light" : "dark");
+        document.documentElement.classList.add(theme === "light" ? "dark" : "light");
         toast({
             title: t(tokens.common.themeChanged),
-            action: (
-                <ToastAction altText={t(tokens.common.close)}>
-                    {t(tokens.common.close)}
-                </ToastAction>
-            ),
+            action: <ToastAction altText={t(tokens.common.close)}>{t(tokens.common.close)}</ToastAction>,
         });
     };
 
@@ -72,45 +52,28 @@ export default function Navbar() {
         i18n.changeLanguage(lang);
         toast({
             title: t(tokens.common.languageChanged),
-            action: (
-                <ToastAction altText={t(tokens.common.close)}>
-                    {" "}
-                    {t(tokens.common.close)}
-                </ToastAction>
-            ),
+            action: <ToastAction altText={t(tokens.common.close)}> {t(tokens.common.close)}</ToastAction>,
             variant: "default",
         });
     };
 
     return (
         <header className="fixed inset-x-0 top-0 z-50 bg-card/80 backdrop-blur supports-[backdrop-filter]:bg-base-200/50">
-            <nav
-                className="flex items-center justify-between p-3 lg:px-8 h-16"
-                aria-label="Global"
-            >
+            <nav className="flex items-center justify-between p-3 lg:px-8 h-16" aria-label="Global">
                 <div className="flex lg:flex-1">
                     <Link href="/" className="-m-1.5 p-1.5">
                         <span className="sr-only">Capital Compass</span>
-                        <Image
-                            src={"/logo-letters.webp"}
-                            alt="Capital Compass Logo"
-                            width={150}
-                            height={100}
-                        />
+                        {theme === "light" ? (
+                            <Image src={"/logo-letters-white-bg.svg"} alt="Capital Compass Logo" width={150} height={100} />
+                        ) : (
+                            <Image src={"/logo-letters-dark.svg"} alt="Capital Compass Logo" width={150} height={100} />
+                        )}
                     </Link>
                 </div>
-                <MobileNav
-                    handleToggleTheme={handleToggleTheme}
-                    currentLanguage={currentLanguage}
-                    handleChangeLanguage={handleChangeLanguage}
-                />
+                <MobileNav handleToggleTheme={handleToggleTheme} currentLanguage={currentLanguage} handleChangeLanguage={handleChangeLanguage} theme={theme} />
                 <div className="hidden md:flex md:gap-x-12">
                     {navigation.map((item) => (
-                        <a
-                            key={item.name}
-                            href={item.href}
-                            className="text-sm font-semibold leading-6 text-gray-900 dark:text-white"
-                        >
+                        <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-900 dark:text-white">
                             {item.name}
                         </a>
                     ))}
@@ -119,22 +82,14 @@ export default function Navbar() {
                     <TooltipProvider>
                         <Tooltip>
                             <TooltipTrigger asChild>
-                                <Button
-                                    onClick={handleToggleTheme}
-                                    variant="ghost"
-                                    size="icon"
-                                >
+                                <Button onClick={handleToggleTheme} variant="ghost" size="icon">
                                     <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
                                     <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                                    <span className="sr-only">
-                                        Toggle theme
-                                    </span>
+                                    <span className="sr-only">Toggle theme</span>
                                 </Button>
                             </TooltipTrigger>
                             <TooltipContent>
-                                <p className="text-sm font-semibold">
-                                    {t(tokens.common.changeTheme)}
-                                </p>
+                                <p className="text-sm font-semibold">{t(tokens.common.changeTheme)}</p>
                             </TooltipContent>
                         </Tooltip>
                     </TooltipProvider>
@@ -143,48 +98,22 @@ export default function Navbar() {
                             <Button variant="ghost" size="icon">
                                 <Tooltip>
                                     <TooltipTrigger asChild>
-                                        <Image
-                                            src={flags[currentLanguage]}
-                                            alt="Language"
-                                            className="w-6 h-6"
-                                            width={24}
-                                            height={24}
-                                        />
+                                        <Image src={flags[currentLanguage]} alt="Language" className="w-6 h-6" width={24} height={24} />
                                     </TooltipTrigger>
                                     <TooltipContent>
-                                        <p className="text-sm font-semibold">
-                                            {t(tokens.common.changeLanguage)}
-                                        </p>
+                                        <p className="text-sm font-semibold">{t(tokens.common.changeLanguage)}</p>
                                     </TooltipContent>
                                 </Tooltip>
                             </Button>
                         </DropdownMenuTrigger>
 
                         <DropdownMenuContent className="w-42 mr-6">
-                            <DropdownMenuItem
-                                onClick={() => handleChangeLanguage("en")}
-                                className="flex items-center gap-2"
-                            >
-                                <Image
-                                    src={flags["en"]}
-                                    alt="Language"
-                                    className="w-6 h-6"
-                                    width={24}
-                                    height={24}
-                                />
+                            <DropdownMenuItem onClick={() => handleChangeLanguage("en")} className="flex items-center gap-2">
+                                <Image src={flags["en"]} alt="Language" className="w-6 h-6" width={24} height={24} />
                                 <p className="font-semibold">English</p>
                             </DropdownMenuItem>
-                            <DropdownMenuItem
-                                onClick={() => handleChangeLanguage("el")}
-                                className="flex items-center gap-2"
-                            >
-                                <Image
-                                    src={flags["el"]}
-                                    alt="Language"
-                                    className="w-6 h-6"
-                                    width={24}
-                                    height={24}
-                                />
+                            <DropdownMenuItem onClick={() => handleChangeLanguage("el")} className="flex items-center gap-2">
+                                <Image src={flags["el"]} alt="Language" className="w-6 h-6" width={24} height={24} />
                                 <p className="font-semibold">Ελληνικά</p>
                             </DropdownMenuItem>
                         </DropdownMenuContent>

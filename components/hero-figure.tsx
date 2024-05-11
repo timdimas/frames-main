@@ -12,14 +12,8 @@ type HeroFigureProps = {
     reverse?: boolean;
 };
 
-export const HeroFigure: FC<HeroFigureProps> = ({
-    title,
-    description,
-    imgSrc,
-    btnText,
-    reverse = false,
-}) => {
-    const reverseClass = reverse ? "order-first" : "";
+export const HeroFigure: FC<HeroFigureProps> = ({ title, description, imgSrc, btnText, reverse = false }) => {
+    const reverseClass = reverse ? "lg:order-first" : "";
     return (
         // <div className="w-full">
         //     <div className={`flex flex-col ${reverseClass} items-center gap-6`}>
@@ -41,21 +35,11 @@ export const HeroFigure: FC<HeroFigureProps> = ({
             <div className="container grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10">
                 <div className="space-y-4">
                     <div className="space-y-2">
-                        <h3 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
-                            {title}
-                        </h3>
-                        <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                            {description}
-                        </p>
+                        <h3 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">{title}</h3>
+                        <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">{description}</p>
                     </div>
                 </div>
-                <Image
-                    alt="Hero"
-                    className={`mx-auto rounded-xl object-cover w-full sm:w-2/3 lg:w-full ${reverseClass} shadow-lg`}
-                    height="350"
-                    src="/main-img.webp"
-                    width="350"
-                />
+                <Image alt="Hero" className={`mx-auto rounded-xl object-cover w-full sm:w-2/3 lg:w-full ${reverseClass} shadow-lg`} height="350" src="/main-img.webp" width="350" />
             </div>
         </section>
     );
