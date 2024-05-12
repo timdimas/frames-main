@@ -6,7 +6,7 @@ import config from "@/config";
 type Program = {
     id: number;
     attributes: {
-        Title: string;
+        title: string;
         Description: string;
         Slug: string;
     };
@@ -37,7 +37,7 @@ export default function Page() {
     }, []);
     return (
         <div className="py-24 w-full container">
-            <ProgramTemplate title={program?.attributes?.Title} />
+            <ProgramTemplate title={program?.attributes?.title} />
         </div>
     );
 }
