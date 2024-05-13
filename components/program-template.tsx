@@ -1,19 +1,24 @@
 import React, { FC } from "react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import Link from "next/link";
+import { BlocksRenderer, type BlocksContent } from "@strapi/blocks-react-renderer";
+import Image from "next/image";
 
 type ProgramProps = {
     title: string | undefined;
     description?: string;
-    richText?: string;
+    richText: BlocksContent;
     coverImage?: string;
 };
 
 export const ProgramTemplate: FC<ProgramProps> = ({ title, description, richText, coverImage }) => {
+    console.log(richText);
+    const content: BlocksContent = richText;
+    console.log(content);
     return (
         <div>
             <div
-                className="h-[25vh] rounded-tl-[2em] rounded-br-[2em] flex flex-col gap-3 justify-center items-center"
+                className="h-[25vh] rounded-tl-[2em] rounded-br-[2em] flex flex-col gap-3 justify-center items-center mb-12"
                 style={{
                     backgroundImage: "url('/programs/blurry_background.svg')",
                     backgroundSize: "cover",
@@ -36,21 +41,56 @@ export const ProgramTemplate: FC<ProgramProps> = ({ title, description, richText
                     </BreadcrumbList>
                 </Breadcrumb>
             </div>
-            <div>
-                <p>
-                    Ο νέος Αναπτυξιακός Νόμος αναμένεται να τεθεί σε ισχύ από τον Ιανουάριο του 2022. Με τον νέο χάρτη των περιφερειακών ενισχύσεων, προβλέπονται προσαυξημένα
-                    ποσοστά ενισχύσεων στο σύνολο σχεδόν των περιφερειών. Το μέγιστο ποσό της επιδότησης θα φτάνει τα 10 εκατ. ευρώ ανά επένδυση.
-                </p>
-                <h2 className="text-3xl font-bold">Ποιοι είναι οι κύριοι άξονες του νέου Αναπτυξιακού Νόμου;</h2>
-                <p>Στον Νέο Αναπτυξιακό μπορούν να συμμετέχουν οι εξής μορφές επιχειρήσεων:</p>
-                <ol className="list-disc flex flex-col gap-3 ml-5">
-                    <li>Εμπορική εταιρία (ΟΕ, ΕΕ, ΑΕ, ΙΚΕ)</li>
-                    <li>Συνεταιρισμοί, Κοιν.Σ.Επ, Αγροτικοί Συνεταιρισμοί (ΑΣ), Ομάδες Παραγωγών (ΟΠ), Αστικοί Συνεταιρισμοί, Αγροτικές Εταιρικές Συμπράξεις (ΑΕΣ)</li>
-                    <li>Υπό ίδρυση ή υπό συγχώνευση εταιρίες (σύσταση μετά την έγκριση του επενδυτικού σχεδίου)</li>
-                    <li>Κοινοπραξίες με προϋπόθεση καταχώρησης στο ΓΕΜΗ</li>
-                    <li>Δημόσιες και δημοτικές επιχειρήσεις και θυγατρικές τους υπό προϋποθέσεις</li>
-                </ol>
-            </div>
+            <BlocksRenderer
+                content={content}
+                blocks={{
+                    paragraph: ({ children }) => <p className="text-neutral900 pb-2">{children}</p>,
+                    heading: ({ children, level }) => {
+                        switch (level) {
+                            case 1:
+                                return <h1 className="text-5xl font-bold text-primary dark:text-white py-6">{children}</h1>;
+                            case 2:
+                                return <h2 className="text-4xl font-bold text-primary dark:text-white py-6">{children}</h2>;
+                            case 3:
+                                return <h3 className="text-2xl font-bold text-primary dark:text-white py-3">{children}</h3>;
+                            case 4:
+                                return <h4 className="text-xl font-bold text-primary dark:text-white py-3">{children}</h4>;
+                            case 5:
+                                return <h5 className="text-lg font-bold text-primary dark:text-white py-3">{children}</h5>;
+                            case 6:
+                                return <h6 className="text-md font-bold text-primary dark:text-white py-3">{children}</h6>;
+                            default:
+                                return <h1 className="text-4xl font-bold text-primary dark:text-white py-6">{children}</h1>;
+                        }
+                    },
+                    link: ({ children, url }) => {
+                        return (
+                            <Link className="text-secondary hover:underline" href={url} target={"_blank"}>
+                                {children}
+                            </Link>
+                        );
+                    },
+                    list: ({ children, format }) => {
+                        if (format === "ordered") {
+                            return <ol className="marker:text-primary list-decimal list-inside space-y-3">{children}</ol>;
+                        } else {
+                            return <ul className="marker:text-primary list-disc list-inside space-y-3">{children}</ul>;
+                        }
+                    },
+                    image: ({ image }) => {
+                        console.log(image);
+                        return (
+                            <Image
+                                src={image?.url}
+                                width={image.width}
+                                height={image.height}
+                                alt={image.alternativeText || ""}
+                                className="w-full h-60 object-cover rounded-lg my-3"
+                            />
+                        );
+                    },
+                }}
+            />
         </div>
     );
 };
