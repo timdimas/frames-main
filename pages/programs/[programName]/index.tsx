@@ -7,6 +7,7 @@ import fetcher from "@/lib/fetcher";
 import programsAPI from "@/api/programs";
 import { Seo } from "@/components/seo";
 import { useRouter } from "next/router";
+import { GetStaticProps, InferGetStaticPropsType } from "next";
 
 type Program = {
     id: number;
@@ -17,13 +18,47 @@ type Program = {
     };
 } | null;
 
-export default function Page() {
+export const getStaticPaths = async () => {
+    const res = await fetcher(`${config.api}/api/programs`);
+
+    const result = res.data || null;
+    const paths = result.map((program: any) => ({
+        params: { programName: program.id.toString() },
+    }));
+
+    // { fallback: false } means other routes should 404
+    return { paths, fallback: false };
+};
+
+export const getStaticProps = (async (context) => {
+    const res = await fetcher(
+        `${config.api}/api/programs/${
+            context?.params?.programName || ""
+        }?populate=*`
+    );
+
+    const result = res?.data || null;
+    return { props: { result } };
+}) satisfies GetStaticProps<{
+    result: any;
+}>;
+
+export default function Page({
+    result,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
     const { query } = useRouter();
 
-    console.log(query.programName);
-    const { data: res, error, isLoading } = programsAPI().useProgram({ id: query?.programName as string, populate: "*" });
+    console.log(result, "A");
+    // const {
+    //     data: res,
+    //     error,
+    //     isLoading,
+    // } = programsAPI().useProgram({
+    //     id: query?.programName as string,
+    //     populate: "*",
+    // });
     // const { data: res, error, isLoading } = useSWR(`${config.api}/api/programs/1?populate=*`, fetcher);
-    console.log(res);
+    // console.log(res);
     // useEffect(() => {
     //     const getPrograms = async () => {
     //         try {
@@ -46,17 +81,20 @@ export default function Page() {
     //     getPrograms();
     // }, []);
 
-    if (isLoading) return <div>Loading...</div>;
+    // if (isLoading) return <div>Loading...</div>;
 
     return (
         <>
             <Seo
-                title={res?.data?.attributes?.seo[0]?.metaTitle || ""}
-                description={res?.data?.attributes?.seo[0]?.metaDescription || ""}
-                keywords={res?.data?.attributes?.seo[0]?.keywords || ""}
+                title={result?.attributes?.seo[0]?.metaTitle || ""}
+                description={result?.attributes?.seo[0]?.metaDescription || ""}
+                keywords={result?.attributes?.seo[0]?.keywords || ""}
             />
             <div className="py-24 w-full container">
-                <ProgramTemplate title={res?.data?.attributes?.title} richText={res?.data?.attributes?.content} />
+                <ProgramTemplate
+                    title={result?.attributes?.title}
+                    richText={result?.attributes?.content}
+                />
             </div>
         </>
     );
