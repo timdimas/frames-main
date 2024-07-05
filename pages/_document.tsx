@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 import { Html, Head, Main, NextScript } from "next/document";
-import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 export default function Document() {
     return (
@@ -25,7 +24,7 @@ export default function Document() {
                 />
                 <link rel="manifest" href="/site.webmanifest" />
             </Head>
-            <GoogleAnalytics />
+
             <body
                 className={cn(
                     "min-h-screen bg-background font-sans antialiased"

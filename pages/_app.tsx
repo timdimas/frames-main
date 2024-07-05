@@ -8,6 +8,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Footer from "@/components/footer";
 import { Analytics } from "@vercel/analytics/react";
+import { GoogleAnalytics } from "nextjs-google-analytics";
 
 export default function App({ Component, pageProps }: AppProps) {
     return (
@@ -22,6 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
                 <TooltipProvider>
                     <Toaster />
                     <Navbar />
+                    <GoogleAnalytics trackPageViews />
                     <Component {...pageProps} />
                     <Footer />
                     <Analytics />
