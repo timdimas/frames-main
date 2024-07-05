@@ -21,4 +21,13 @@ export const en = {
     [tokens.seo.mainKeywords]:
         "Business consultants, Strategic guidance, Growth strategies, Profit optimization, Expert solutions",
     [tokens.common.home]: "Home",
+    [tokens.flipWords.quality]: "Quality",
+    [tokens.flipWords.innovation]: "Innovation",
+    [tokens.flipWords.inclusion]: "Inclusion",
+    [tokens.flipWords.emprowerment]: "Empowerment",
+    [tokens.flipWords.community]: "Community",
+    [tokens.flipWords.sustainability]: "Sustainability",
+    [tokens.flipWords.guidance]: "Guidance",
+    [tokens.flipWords.support]: "Support",
+    [tokens.flipWords.education]: "Education",
 };

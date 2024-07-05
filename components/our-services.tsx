@@ -26,9 +26,13 @@ export default function OurServices() {
                         xmlns="http://www.w3.org/2000/svg"
                         xmlnsXlink="http://www.w3.org/1999/xlink"
                     >
-                        <g id="SVGRepo_bgCarrier" stroke-width="0" />
+                        <g id="SVGRepo_bgCarrier" strokeWidth="0" />
 
-                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+                        <g
+                            id="SVGRepo_tracerCarrier"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
 
                         <g id="SVGRepo_iconCarrier">
                             {" "}
@@ -42,13 +46,21 @@ export default function OurServices() {
                             <g id="Layer_1" />{" "}
                         </g>
                     </svg>
-                    <h3 className="text-lg text-primary dark:text-white font-bold py-2 text-center">Επιδοτούμενα Προγράμματα</h3>
+                    <h3 className="text-lg text-primary dark:text-white font-bold py-2 text-center">
+                        Επιδοτούμενα Προγράμματα
+                    </h3>
                     <p className="text-center w-full md:w-1/2">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil nesciunt reiciendis, quas dolorum sint vero non impedit iure praesentium doloremque!
+                        Lorem ipsum, dolor sit amet consectetur adipisicing
+                        elit. Nihil nesciunt reiciendis, quas dolorum sint vero
+                        non impedit iure praesentium doloremque!
                     </p>
                 </div>
 
-                <div data-aos="slide-up" data-aos-delay="100" className="flex flex-col items-center">
+                <div
+                    data-aos="slide-up"
+                    data-aos-delay="100"
+                    className="flex flex-col items-center"
+                >
                     <svg
                         className="fill-primary dark:fill-white w-20 h-20"
                         width="900px"
@@ -59,9 +71,13 @@ export default function OurServices() {
                         xmlns="http://www.w3.org/2000/svg"
                         xmlnsXlink="http://www.w3.org/1999/xlink"
                     >
-                        <g id="SVGRepo_bgCarrier" stroke-width="0" />
+                        <g id="SVGRepo_bgCarrier" strokeWidth="0" />
 
-                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+                        <g
+                            id="SVGRepo_tracerCarrier"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
 
                         <g id="SVGRepo_iconCarrier">
                             {" "}
@@ -75,12 +91,20 @@ export default function OurServices() {
                             <g id="Layer_1" />{" "}
                         </g>
                     </svg>
-                    <h3 className="text-lg text-primary dark:text-white font-bold py-2 text-center">Στρατηγική & Ανάπτυξη Επιχειρήσεων</h3>
+                    <h3 className="text-lg text-primary dark:text-white font-bold py-2 text-center">
+                        Στρατηγική & Ανάπτυξη Επιχειρήσεων
+                    </h3>
                     <p className="text-center w-full md:w-1/2">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil nesciunt reiciendis, quas dolorum sint vero non impedit iure praesentium doloremque!
+                        Lorem ipsum, dolor sit amet consectetur adipisicing
+                        elit. Nihil nesciunt reiciendis, quas dolorum sint vero
+                        non impedit iure praesentium doloremque!
                     </p>
                 </div>
-                <div data-aos="slide-up" data-aos-delay="200" className="flex flex-col items-center">
+                <div
+                    data-aos="slide-up"
+                    data-aos-delay="200"
+                    className="flex flex-col items-center"
+                >
                     <svg
                         className="fill-primary dark:fill-white w-20 h-20"
                         width="800px"
@@ -91,9 +115,13 @@ export default function OurServices() {
                         xmlns="http://www.w3.org/2000/svg"
                         xmlnsXlink="http://www.w3.org/1999/xlink"
                     >
-                        <g id="SVGRepo_bgCarrier" stroke-width="0" />
+                        <g id="SVGRepo_bgCarrier" strokeWidth="0" />
 
-                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+                        <g
+                            id="SVGRepo_tracerCarrier"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
 
                         <g id="SVGRepo_iconCarrier">
                             {" "}
@@ -107,19 +135,43 @@ export default function OurServices() {
                             <g id="Layer_1" />{" "}
                         </g>
                     </svg>
-                    <h3 className="text-lg text-primary dark:text-white font-bold py-2 text-center">Υποστήριξη Επιχειρήσεων</h3>
+                    <h3 className="text-lg text-primary dark:text-white font-bold py-2 text-center">
+                        Υποστήριξη Επιχειρήσεων
+                    </h3>
                     <p className="text-center w-full md:w-1/2">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil nesciunt reiciendis, quas dolorum sint vero non impedit iure praesentium doloremque!
+                        Lorem ipsum, dolor sit amet consectetur adipisicing
+                        elit. Nihil nesciunt reiciendis, quas dolorum sint vero
+                        non impedit iure praesentium doloremque!
                     </p>
                 </div>
-                <div data-aos="slide-right" className="absolute -left-[10%] md:-left-[15%] -top-0 md:-top-20">
-                    <svg className="w-[40%] md:w-[80%] h-full -rotate-45 rounded-full" viewBox="0 0 400 400">
+                <div
+                    data-aos="slide-right"
+                    className="absolute -left-[10%] md:-left-[15%] -top-0 md:-top-20"
+                >
+                    <svg
+                        className="w-[40%] md:w-[80%] h-full -rotate-45 rounded-full"
+                        viewBox="0 0 400 400"
+                    >
                         <defs>
-                            <pattern id="bg_pattern-1" width="100" height="100" patternUnits="userSpaceOnUse">
-                                <polygon points="25,25 75,50, 25,75" fill="#25A3D4"></polygon>{" "}
+                            <pattern
+                                id="bg_pattern-1"
+                                width="100"
+                                height="100"
+                                patternUnits="userSpaceOnUse"
+                            >
+                                <polygon
+                                    points="25,25 75,50, 25,75"
+                                    fill="#25A3D4"
+                                ></polygon>{" "}
                             </pattern>
                         </defs>
-                        <rect x="0" y="0" width="100%" height="100%" fill="url(#bg_pattern-1)"></rect>
+                        <rect
+                            x="0"
+                            y="0"
+                            width="100%"
+                            height="100%"
+                            fill="url(#bg_pattern-1)"
+                        ></rect>
                     </svg>
                 </div>
             </div>

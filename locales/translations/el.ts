@@ -21,4 +21,13 @@ export const el = {
     [tokens.seo.mainKeywords]:
         "Σύμβουλοι επιχειρήσεων, Στρατηγική καθοδήγηση, Στρατηγικές ανάπτυξης, Βελτιστοποίηση κερδών, Ειδικές λύσεις",
     [tokens.common.home]: "Αρχική",
+    [tokens.flipWords.quality]: "Ποιότητα",
+    [tokens.flipWords.innovation]: "Καινοτομία",
+    [tokens.flipWords.inclusion]: "Συμπερίληψη",
+    [tokens.flipWords.emprowerment]: "Ενδυνάμωση",
+    [tokens.flipWords.community]: "Κοινότητα",
+    [tokens.flipWords.sustainability]: "Βιωσιμότητα",
+    [tokens.flipWords.guidance]: "Καθοδήγηση",
+    [tokens.flipWords.support]: "Υποστήριξη",
+    [tokens.flipWords.education]: "Εκπαίδευση",
 };

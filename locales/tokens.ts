@@ -23,4 +23,15 @@ export const tokens = {
         mainDescription: "seo.mainDescription",
         mainKeywords: "seo.mainKeywords",
     },
+    flipWords: {
+        quality: "flipWords.quality",
+        innovation: "flipWords.innovation",
+        inclusion: "flipWords.inclusion",
+        emprowerment: "flipWords.emprowerment",
+        community: "flipWords.community",
+        sustainability: "flipWords.sustainability",
+        guidance: "flipWords.guidance",
+        support: "flipWords.support",
+        education: "flipWords.education",
+    },
 };
