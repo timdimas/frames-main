@@ -15,17 +15,8 @@ import useSWR from "swr";
 import config from "@/config";
 import fetcher from "@/lib/fetcher";
 
-// export const getStaticProps = (async (context)) => {
-//     const { data: result, error, isLoading } = programsAPI().usePrograms();
-//     return {
-//         props: {
-//             result: result.data,
-//         },
-//     };
-// };
-
 export const getStaticProps = (async (context) => {
-    const res = await fetcher(`${config.api}/api/programs`);
+    const res = await fetcher(`${config.api}/api/programs?locale=all`);
 
     const result = res.data || null;
     return { props: { result } };
@@ -40,16 +31,6 @@ export default function Home({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
     const { theme, setTheme } = useTheme();
     const { t } = useTranslation();
-    const toggleTheme = () => {
-        setTheme(theme === "light" ? "dark" : "light");
-
-        document.documentElement.classList.remove(
-            theme === "light" ? "light" : "dark"
-        );
-        document.documentElement.classList.add(
-            theme === "light" ? "dark" : "light"
-        );
-    };
 
     return (
         <>

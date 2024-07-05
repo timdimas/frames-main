@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -13,16 +13,23 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import programsAPI from "@/api/programs";
+import { useSettings } from "@/hooks/use-settings";
 
 export function ProgramsCarousel({ result }: { result: any }) {
     const [api, setApi] = useState<CarouselApi>();
     const [current, setCurrent] = useState(0);
     const [count, setCount] = useState(0);
-    console.log(result);
+    const settings = useSettings();
 
-    // const { data, error, isLoading } = programsAPI().usePrograms();
+    const filteredPrograms = useMemo(() => {
+        if (!result) {
+            return [];
+        }
 
-    const PROGRAM_COUNT: number = 5;
+        return result.filter((program: any) => {
+            return program?.attributes?.locale === settings.language;
+        });
+    }, [settings.language]);
 
     useEffect(() => {
         if (!api) {
@@ -53,13 +60,16 @@ export function ProgramsCarousel({ result }: { result: any }) {
                 className="w-2/3 md:w-full max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-6xl"
             >
                 <CarouselContent>
-                    {result?.map((program: any, index: string) => (
+                    {filteredPrograms?.map((program: any, index: string) => (
                         <CarouselItem
                             key={program?.id}
                             className="md:basis-1/2 lg:basis-1/3"
                         >
-                            <Link href={`/programs/${program?.id}`}>
-                                <Card>
+                            <Link
+                                className="h-full block"
+                                href={`/programs/${program?.id}`}
+                            >
+                                <Card className="h-full">
                                     <CardContent className="flex aspect-square items-start justify-start flex-col p-0 ">
                                         <Image
                                             src="/placeholder.svg"
@@ -84,26 +94,6 @@ export function ProgramsCarousel({ result }: { result: any }) {
                             </Link>
                         </CarouselItem>
                     ))}
-                    {/* {Array.from({ length: PROGRAM_COUNT }).map((_, index) => (
-                        <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                            <Link href={`/programs/${index}`}>
-                                <Card>
-                                    <CardContent className="flex aspect-square items-start justify-start flex-col p-0 ">
-                                        <Image src="/placeholder.svg" alt="Placeholder" width={100} height={100} className="w-full rounded-t-xl" />
-                                        <div className="p-2 px-3 flex flex-col gap-2">
-                                            <h3 className="text-xl text-start tracking-normal">Test Title this a large title and how would it render</h3>
-                                            <p className="text-gray-500 text-sm">12 Feb 2023</p>
-                                            <p className="text-truncate text-muted-foreground">
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem
-                                                ipsum dolor sit amet consectetur adipisicing elit. Modi numquam necessitatibus officia recusandae iste dolorum dolore quod eius?
-                                                Minima, ipsa.
-                                            </p>
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                            </Link>
-                        </CarouselItem>
-                    ))} */}
                 </CarouselContent>
                 <CarouselPrevious />
                 <CarouselNext />

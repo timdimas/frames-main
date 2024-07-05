@@ -16,6 +16,9 @@ export const en = {
     [tokens.nav.ourLocation]: "Our Location",
     [tokens.common.addressLocation]: "Fragkon 12, Thessaloniki 546 26",
     [tokens.seo.mainTitle]: "Expert Business Consultants | Capital Compass",
-    [tokens.seo.mainDescription]: "Elevate Your Business with Capital Compass. We offer strategic guidance to boost growth and profits. Partner with us for solutions tailored to your needs.",
-    [tokens.seo.mainKeywords]: "Business consultants, Strategic guidance, Growth strategies, Profit optimization, Expert solutions",
+    [tokens.seo.mainDescription]:
+        "Elevate Your Business with Capital Compass. We offer strategic guidance to boost growth and profits. Partner with us for solutions tailored to your needs.",
+    [tokens.seo.mainKeywords]:
+        "Business consultants, Strategic guidance, Growth strategies, Profit optimization, Expert solutions",
+    [tokens.common.home]: "Home",
 };

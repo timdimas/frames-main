@@ -1,8 +1,20 @@
 import React, { FC } from "react";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
+import {
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    BreadcrumbList,
+    BreadcrumbPage,
+    BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import Link from "next/link";
-import { BlocksRenderer, type BlocksContent } from "@strapi/blocks-react-renderer";
+import {
+    BlocksRenderer,
+    type BlocksContent,
+} from "@strapi/blocks-react-renderer";
 import Image from "next/image";
+import { tokens } from "@/locales/tokens";
+import { useTranslation } from "react-i18next";
 
 type ProgramProps = {
     title: string | undefined;
@@ -11,10 +23,14 @@ type ProgramProps = {
     coverImage?: string;
 };
 
-export const ProgramTemplate: FC<ProgramProps> = ({ title, description, richText, coverImage }) => {
-    console.log(richText);
-    const content: BlocksContent = richText;
-    console.log(content);
+export const ProgramTemplate: FC<ProgramProps> = ({
+    title,
+    description,
+    richText,
+    coverImage,
+}) => {
+    const { t } = useTranslation();
+
     return (
         <div>
             <div
@@ -30,55 +46,102 @@ export const ProgramTemplate: FC<ProgramProps> = ({ title, description, richText
                 <Breadcrumb>
                     <BreadcrumbList>
                         <BreadcrumbItem>
-                            <Link aria-label="Go To Home" className="text-primary hover:underline" href="/">
-                                Αρχική
+                            <Link
+                                aria-label="Go To Home"
+                                className="text-primary hover:underline"
+                                href="/"
+                            >
+                                {t(tokens.common.home)}
                             </Link>
                         </BreadcrumbItem>
                         <BreadcrumbSeparator />
                         <BreadcrumbItem>
-                            <BreadcrumbPage className="text-black">{title}</BreadcrumbPage>
+                            <BreadcrumbPage className="text-black">
+                                {title}
+                            </BreadcrumbPage>
                         </BreadcrumbItem>
                     </BreadcrumbList>
                 </Breadcrumb>
             </div>
             <BlocksRenderer
-                content={content}
+                content={richText}
                 blocks={{
-                    paragraph: ({ children }) => <p className="text-neutral900 pb-2">{children}</p>,
+                    paragraph: ({ children }) => (
+                        <p className="text-neutral900 pb-2">{children}</p>
+                    ),
                     heading: ({ children, level }) => {
                         switch (level) {
                             case 1:
-                                return <h1 className="text-5xl font-bold text-primary dark:text-white py-6">{children}</h1>;
+                                return (
+                                    <h1 className="text-5xl font-bold text-primary dark:text-white py-6">
+                                        {children}
+                                    </h1>
+                                );
                             case 2:
-                                return <h2 className="text-4xl font-bold text-primary dark:text-white py-6">{children}</h2>;
+                                return (
+                                    <h2 className="text-4xl font-bold text-primary dark:text-white py-6">
+                                        {children}
+                                    </h2>
+                                );
                             case 3:
-                                return <h3 className="text-2xl font-bold text-primary dark:text-white py-3">{children}</h3>;
+                                return (
+                                    <h3 className="text-2xl font-bold text-primary dark:text-white py-3">
+                                        {children}
+                                    </h3>
+                                );
                             case 4:
-                                return <h4 className="text-xl font-bold text-primary dark:text-white py-3">{children}</h4>;
+                                return (
+                                    <h4 className="text-xl font-bold text-primary dark:text-white py-3">
+                                        {children}
+                                    </h4>
+                                );
                             case 5:
-                                return <h5 className="text-lg font-bold text-primary dark:text-white py-3">{children}</h5>;
+                                return (
+                                    <h5 className="text-lg font-bold text-primary dark:text-white py-3">
+                                        {children}
+                                    </h5>
+                                );
                             case 6:
-                                return <h6 className="text-md font-bold text-primary dark:text-white py-3">{children}</h6>;
+                                return (
+                                    <h6 className="text-md font-bold text-primary dark:text-white py-3">
+                                        {children}
+                                    </h6>
+                                );
                             default:
-                                return <h1 className="text-4xl font-bold text-primary dark:text-white py-6">{children}</h1>;
+                                return (
+                                    <h1 className="text-4xl font-bold text-primary dark:text-white py-6">
+                                        {children}
+                                    </h1>
+                                );
                         }
                     },
                     link: ({ children, url }) => {
                         return (
-                            <Link className="text-secondary hover:underline" href={url} target={"_blank"}>
+                            <Link
+                                className="text-secondary hover:underline"
+                                href={url}
+                                target={"_blank"}
+                            >
                                 {children}
                             </Link>
                         );
                     },
                     list: ({ children, format }) => {
                         if (format === "ordered") {
-                            return <ol className="marker:text-primary list-decimal list-inside space-y-3">{children}</ol>;
+                            return (
+                                <ol className="marker:text-primary list-decimal list-inside space-y-3">
+                                    {children}
+                                </ol>
+                            );
                         } else {
-                            return <ul className="marker:text-primary list-disc list-inside space-y-3">{children}</ul>;
+                            return (
+                                <ul className="marker:text-primary list-disc list-inside space-y-3">
+                                    {children}
+                                </ul>
+                            );
                         }
                     },
                     image: ({ image }) => {
-                        console.log(image);
                         return (
                             <Image
                                 src={image?.url}

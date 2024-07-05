@@ -1,5 +1,5 @@
 import { ProgramTemplate } from "@/components/program-template";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import config from "@/config";
 import useSWR from "swr";
@@ -8,6 +8,7 @@ import programsAPI from "@/api/programs";
 import { Seo } from "@/components/seo";
 import { useRouter } from "next/router";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
+import { useSettings } from "@/hooks/use-settings";
 
 type Program = {
     id: number;
@@ -19,7 +20,7 @@ type Program = {
 } | null;
 
 export const getStaticPaths = async () => {
-    const res = await fetcher(`${config.api}/api/programs`);
+    const res = await fetcher(`${config.api}/api/programs?locale=all`);
 
     const result = res.data || null;
     const paths = result.map((program: any) => ({
@@ -46,54 +47,29 @@ export const getStaticProps = (async (context) => {
 export default function Page({
     result,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-    const { query } = useRouter();
+    const settings = useSettings();
 
-    console.log(result, "A");
-    // const {
-    //     data: res,
-    //     error,
-    //     isLoading,
-    // } = programsAPI().useProgram({
-    //     id: query?.programName as string,
-    //     populate: "*",
-    // });
-    // const { data: res, error, isLoading } = useSWR(`${config.api}/api/programs/1?populate=*`, fetcher);
-    // console.log(res);
-    // useEffect(() => {
-    //     const getPrograms = async () => {
-    //         try {
-    //             const headers = {
-    //                 // Authorization: process.env.API_TOKEN,
-    //                 Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-    //                 "Content-Type": "application/json",
-    //             };
-    //             const response = await axios.get(`${config.api}/api/programs/1`, {
-    //                 headers,
-    //             });
-
-    //             console.log(response.data.data);
-    //             setProgram(response.data.data);
-    //         } catch (error) {
-    //             console.error(error);
-    //         }
-    //     };
-
-    //     getPrograms();
-    // }, []);
-
-    // if (isLoading) return <div>Loading...</div>;
+    const program = useMemo(() => {
+        return (
+            result.attributes.localizations.data.find(
+                (l: any) => l?.attributes?.locale === settings.language
+            ) || result
+        );
+    }, [settings.language]);
 
     return (
         <>
             <Seo
-                title={result?.attributes?.seo[0]?.metaTitle || ""}
-                description={result?.attributes?.seo[0]?.metaDescription || ""}
-                keywords={result?.attributes?.seo[0]?.keywords || ""}
+                title={program?.attributes?.seo?.[0]?.metaTitle || ""}
+                description={
+                    program?.attributes?.seo?.[0]?.metaDescription || ""
+                }
+                keywords={program?.attributes?.seo?.[0]?.keywords || ""}
             />
             <div className="py-24 w-full container">
                 <ProgramTemplate
-                    title={result?.attributes?.title}
-                    richText={result?.attributes?.content}
+                    title={program?.attributes?.title}
+                    richText={program?.attributes?.content}
                 />
             </div>
         </>

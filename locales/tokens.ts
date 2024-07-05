@@ -8,6 +8,7 @@ export const tokens = {
         languageChanged: "common.languageChanged",
         close: "common.close",
         addressLocation: "common.addressLocation",
+        home: "common.home",
     },
     nav: {
         aboutUs: "nav.aboutUs",
@@ -21,5 +22,5 @@ export const tokens = {
         mainTitle: "seo.mainTitle",
         mainDescription: "seo.mainDescription",
         mainKeywords: "seo.mainKeywords",
-    }
+    },
 };
